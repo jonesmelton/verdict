@@ -1,6 +1,6 @@
 (lang dune 3.11)
 (name verdict)
-(version 0.1.3)
+(version 0.1.4)
 (generate_opam_files true)
 (license MIT)
 (authors "Jones Melton <opam@jonesmelton.com>")
@@ -18,7 +18,7 @@
   ipaddr
   domain-name
   fmt
-  (tls-eio (>= 2.0.0))
+  (tls-eio (>= 2.1.1))
   ca-certs
   (mirage-crypto-rng (>= 1.0.0))
   cstruct
