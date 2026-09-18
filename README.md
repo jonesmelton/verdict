@@ -1,4 +1,4 @@
-# verdict — Eio-native OCaml client for the TypeSafe AI evaluation API
+# verdict — Eio client for TypeSafe AI's Jev model
 
 `verdict` is an OCaml 5.2+ client SDK for the
 [TypeSafe AI](https://api.typesafe.ai) system-one evaluation API. Questions and
