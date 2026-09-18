@@ -1,6 +1,6 @@
 (lang dune 3.11)
 (name verdict)
-(version 0.1.1)
+(version 0.1.2)
 (generate_opam_files true)
 (license MIT)
 (authors "Jones Melton <opam@jonesmelton.com>")
