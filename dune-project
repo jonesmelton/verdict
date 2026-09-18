@@ -1,6 +1,6 @@
 (lang dune 3.11)
 (name verdict)
-(version 0.1.0)
+(version 0.1.1)
 (generate_opam_files true)
 (license MIT)
 (authors "Jones Melton <opam@jonesmelton.com>")
@@ -22,7 +22,7 @@
   ca-certs
   (mirage-crypto-rng (>= 1.0.0))
   cstruct
-  yojson
+  (yojson (>= 1.6.0))
   uri
   logs
   (http-date (>= 0.2))
