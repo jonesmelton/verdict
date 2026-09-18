@@ -8,8 +8,8 @@
 (source (github jonesmelton/verdict))
 (package
  (name verdict)
- (synopsis "Unofficial Eio-native OCaml client for TypeSafe AI")
- (description "Typed questions and answers, bounded HTTP requests, TLS, and retry policies for the TypeSafe AI evaluation API. Requires OCaml 5.2 or newer.")
+ (synopsis "Unofficial Eio-native OCaml client for TypeSafe AI's Jev")
+ (description "Typed questions and answers, bounded HTTP requests, TLS, and retry policies for the TypeSafe AI Jev model. Requires OCaml 5.2 or newer.")
  (depends
   (ocaml (>= 5.2.0))
   (eio (>= 1.5))
