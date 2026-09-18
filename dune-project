@@ -3,8 +3,8 @@
 (version 0.1.0)
 (generate_opam_files true)
 (license MIT)
-(authors "Verdict OCaml contributors")
-(maintainers "Verdict OCaml contributors")
+(authors "Jones Melton <opam@jonesmelton.com>")
+(maintainers "Jones Melton <opam@jonesmelton.com>")
 (source (github jonesmelton/verdict))
 (package
  (name verdict)
