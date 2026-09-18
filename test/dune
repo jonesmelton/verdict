@@ -1,0 +1,22 @@
+(tests
+ (names
+  test_retry
+  test_error
+  test_protocol
+  test_config
+  test_transport
+  test_retry_loop
+  test_client
+  test_units)
+ (libraries
+  verdict
+  alcotest
+  cohttp
+  cohttp-eio
+  eio_main
+  eio.mock
+  fmt
+  cstruct
+  ipaddr
+  mirage-crypto-rng.unix
+  qcheck-core))

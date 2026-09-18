@@ -1,0 +1,48 @@
+{1 Verdict: an OCaml client for the TypeSafe AI evaluation API}
+
+An Eio-native client for the TypeSafe AI evaluation API. Questions carry their
+answer type, so answers cannot be read as the wrong kind of answer:
+
+{[
+let ( let* ) = Result.bind
+let* spam = Verdict.Question.noul ~id:"spam" () in
+let* request =
+  Verdict.Request.create ~state:(Verdict.Content.text "...") [Verdict.Question.pack spam]
+in
+let* responses = Verdict.Client.evaluate client ~sw request in
+Option.map
+  (fun (answer : Verdict.Answer.Noul.t) ->
+     Verdict.Probability.to_float answer.probability)
+  (Verdict.Response.find responses spam)
+]}
+
+{2 Modules}
+
+- {!module:Verdict.Client} — entry point; performs requests and applies the retry policy.
+- {!module:Verdict.Config} — validated configuration (API key, base URL, model, limits).
+- {!module:Verdict.Request} / {!module:Verdict.Response} — typed wire records for
+  {e POST /v1/systemone}.
+- {!module:Verdict.Question} / {!module:Verdict.Answer} — typed question handles and their answers.
+- {!module:Verdict.Content} — state, instructions and criteria: string, object or array.
+- {!module:Verdict.Model} / {!module:Verdict.Usage} — results of {e GET /v1/models} and token counts.
+- {!module:Verdict.Error} — closed error taxonomy with server request ids.
+- {!module:Verdict.Retry} — backoff and {e Retry-After} handling.
+- {!module:Verdict.Transport} — bounded HTTP/TLS transport (internal, exposed for testing).
+- {!module:Verdict.Decode} — JSON decoding with dotted error paths (internal).
+- {!module:Verdict.Version} — SDK version string, generated from {e dune-project} (internal).
+- {!module:Verdict.Probability} / {!module:Verdict.Confidence} — values bounded to [0,1], for distributions and for answer confidences respectively.
+- {!module:Verdict.Host} — validated base URL host, either an IP address or a TLS hostname (internal).
+
+{2 Errors}
+
+Every failure is an {!module:Verdict.Error} value. {e Timeout}, {e Connection} and
+retryable {e Api} statuses are retried according to {!module:Verdict.Retry};
+{e Configuration}, {e Tls}, {e Decode}, {e Response_too_large} and other {e Api}
+errors are returned immediately. {e Error.Api} and {e Error.Decode} carry the
+{e x-typesafe-request-id} header when the server provides one.
+
+{2 Safety}
+
+Response bodies are capped by {!val:Verdict.Config.max_response_bytes}, each attempt
+runs under {!val:Verdict.Config.timeout} on its own connection, and the API key is never
+included in error messages or logs.

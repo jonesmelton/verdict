@@ -1,0 +1,30 @@
+; version.ml is generated so that dune-project's (version ...) stays the single
+; source of the string Transport reports.
+
+(rule
+ (targets version.ml)
+ (action
+  (with-stdout-to
+   version.ml
+   (echo "let sdk_version = \"%{version:verdict}\"\n"))))
+
+(library
+ (name verdict)
+ (public_name verdict)
+ (private_modules decode)
+ (libraries
+  eio
+  cohttp
+  cohttp-eio
+  tls-eio
+  ca-certs
+  mirage-crypto-rng
+  mirage-crypto-rng.unix
+  yojson
+  uri
+  logs
+  fmt
+  http-date
+  ipaddr
+  domain-name
+  cstruct))

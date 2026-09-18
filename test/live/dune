@@ -1,0 +1,5 @@
+(tests
+ (names test_live)
+ (enabled_if
+  (= %{env:VERDICT_LIVE_API=false} true))
+ (libraries verdict alcotest eio_main logs fmt))

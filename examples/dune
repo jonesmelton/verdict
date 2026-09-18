@@ -1,0 +1,3 @@
+(executables
+ (names evaluate list_models)
+ (libraries verdict eio_main))
